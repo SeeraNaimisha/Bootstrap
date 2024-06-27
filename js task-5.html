@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js task-5</title>
+    <style>
+        .error {
+            color: red;
+        }
+       
+        body{
+        padding: 25px;
+        
+       
+        top: 30%;
+        left: 35%;
+        position: absolute;
+        }
+    
+    </style>
+</head>
+<body>
+    <form id="contactForm" onsubmit="return validateForm()">
+        <table>
+        <tr>
+        <td><label for="name">Name:</label></td>
+        <td><input type="text" id="name" name="name"></td>
+        <td><span id="nameError" class="error"></span></td>
+    </tr>
+    <tr>
+    <td><label for="email">Email:</label></td>
+        <td><input type="text" id="email" name="email"></td>
+            <td><span id="emailError" class="error"></span></td>
+        </tr>
+            <tr>
+                <td><label for="website">Website:</label></td>
+                    <td><input type="text" id="website" name="website"></td>
+                        <td><span id="websiteError" class="error"></span></td>
+                    </tr>
+                       <tr>
+                            <td><label for="message">Message:</label></td>
+                                <td><textarea id="message" name="message"></textarea></td>
+                                    <td><span id="messageError" class="error"></span></td>
+                                </tr>
+        <td><input type="submit" value="Submit"></td>
+    </table>
+    </form>
+
+    <script>
+        function validateForm() {
+            let valid = true;
+            let name = document.getElementById("name").value;
+            if (name === "") {
+                document.getElementById("nameError").innerText = "This field is required";
+                valid = false;
+            } else {
+                document.getElementById("nameError").innerText = "";
+            }
+            let email = document.getElementById("email").value;
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (email === "") {
+                document.getElementById("emailError").innerText = "This field is required";
+                valid = false;
+            } else if (!email.match(emailPattern)) {
+                document.getElementById("emailError").innerText = "A valid email address is required";
+                valid = false;
+            } else {
+                document.getElementById("emailError").innerText = "";
+            }
+            let website = document.getElementById("website").value;
+            let urlPattern = /^(https?:\/\/)?([^\s$.?#].[^\s]*)$/i;
+            if (website === "") {
+                document.getElementById("websiteError").innerText = "This field is required";
+                valid = false;
+            } else if (!website.match(urlPattern)) {
+                document.getElementById("websiteError").innerText = "A valid URL is required";
+                valid = false;
+            } else {
+                document.getElementById("websiteError").innerText = "";
+            }
+let message = document.getElementById("message").value;
+            if (message === "") {
+                document.getElementById("messageError").innerText = "This field is required";
+                valid = false;
+            } else {
+                document.getElementById("messageError").innerText = "";
+            }
+
+            return valid;
+        }
+    </script>
+</body>
+</html>
